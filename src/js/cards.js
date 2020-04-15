@@ -402,8 +402,5 @@ const cards = [
   ]
 ];
 
-
-
-
-
 export default cards;
+export const wordSets = cards[0];

@@ -35,6 +35,7 @@ module.exports = (env, options) =>{
                       MiniCssExtractPlugin.loader,
                       // Translates CSS into CommonJS
                       'css-loader',
+                      'resolve-url-loader',
                       // Compiles Sass to CSS
                       'sass-loader',
                     ],

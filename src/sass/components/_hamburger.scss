@@ -1,13 +1,14 @@
 .hamburger {
-    width: 30px;
+    width: 50px;
     cursor: pointer;
+    z-index: 2;
 
     &-line {
             content: '';
             height: 3px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: block;
-            background-color: #313131;
+            background-color: #ffffff;
             transition: transform .5s ease;
             &:last-child {
                 margin-bottom: 0;
