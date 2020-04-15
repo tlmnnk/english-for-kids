@@ -3,6 +3,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, options) =>{
     const isProduction = options.mode === 'production';
@@ -21,12 +22,15 @@ module.exports = (env, options) =>{
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
-                    use: {
-                      loader: 'babel-loader',
-                      options: {
-                        presets: ['@babel/preset-env']
-                      }
-                    }
+                    use:  
+                    [
+                      {
+                        loader: 'babel-loader',
+                        options: {
+                          presets: ['@babel/preset-env']
+                        }
+                      },
+                    ]
                   },
                   {
                     test: /\.s[ac]ss$/i,
@@ -34,7 +38,8 @@ module.exports = (env, options) =>{
                       // Creates `style` nodes from JS strings
                       MiniCssExtractPlugin.loader,
                       // Translates CSS into CommonJS
-                      'css-loader',
+                       'css-loader', 
+                      
                       'resolve-url-loader',
                       // Compiles Sass to CSS
                       'sass-loader',
@@ -63,6 +68,10 @@ module.exports = (env, options) =>{
             new MiniCssExtractPlugin({
                 filename: 'style.css'
             }),
+            new CopyPlugin([
+              { from: './src/img', to: './img/' },
+              { from: './src/audio', to: './audio/' },
+            ]),
             
         ],
         devServer: {

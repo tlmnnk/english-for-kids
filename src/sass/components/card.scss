@@ -1,21 +1,18 @@
 .cards {
   margin-top: 60px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 .card {
     //background-color: transparent;
+    margin-top: 30px;
     width: 300px;
-    height: 200px;
+    height: 210px;
     
     perspective: 1000px;
 
-    &:hover {
-      
-    }
-    
     &__play {
       margin-top: 5px;
       display: inline-block;
@@ -49,6 +46,7 @@
         backface-visibility: hidden;
 
         & img {
+          margin-top: 10px;
           width: 200px;
           height: auto;
         }

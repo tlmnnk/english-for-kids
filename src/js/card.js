@@ -1,4 +1,4 @@
-import cards from './cards';
+import path from 'path';
 
 export default class Card {
     constructor(card) {
@@ -6,15 +6,15 @@ export default class Card {
     }
 
     renderCard() {
-        return `<div class="card" data-audio="${this.card.audioSrc}">
+        return `<div class="card"">
         <div class="card__inner">
             <div class="card__front">
-                <img src="${this.card.image}" alt="">
+                <img src="${this.card.image}" alt="${this.card.word}">
                 <div class="card__header">${this.card.word}</div>
-                <span class="card__play"></span>
+                <span class="card__play" data-audio="${this.card.audioSrc}"></span>
             </div>
             <div class="card__back">
-                <img src="./src/img/angry.jpg" alt="">
+                <img src="./src/img/angry.jpg" alt="${this.card.translation}">
                 <div class="card__header">${this.card.translation}</div>
             </div>
         </div>
