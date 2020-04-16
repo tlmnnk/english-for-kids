@@ -1,23 +1,25 @@
-import path from 'path';
-
 export default class Card {
-    constructor(card) {
-        this.card = card;
-    }
+  constructor(card) {
+    this.card = card;
+  }
 
-    renderCard() {
-        return `<div class="card"">
+  renderCard() {
+    return `<div class="card"">
         <div class="card__inner">
             <div class="card__front">
                 <img src="${this.card.image}" alt="${this.card.word}">
                 <div class="card__header">${this.card.word}</div>
-                <span class="card__play" data-audio="${this.card.audioSrc}"></span>
+                <div class="card__buttons">
+                  <span class="card__icon card__play" data-audio="${this.card.audioSrc}"></span>
+                  <span class="card__icon card__rotate"></span>
+                </div>
+                
             </div>
             <div class="card__back">
-                <img src="./src/img/angry.jpg" alt="${this.card.translation}">
+                <img src="${this.card.image}" alt="${this.card.translation}">
                 <div class="card__header">${this.card.translation}</div>
             </div>
         </div>
     </div>`;
-    }
+  }
 }

@@ -1,8 +1,10 @@
 .cards {
   margin-top: 60px;
+  margin-bottom: 60px;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  transition: all .3s ease-out;
 }
 
 .card {
@@ -13,17 +15,38 @@
     
     perspective: 1000px;
 
-    &__play {
+    transition: box-shadow .4s ease-out;
+    transition: transform .3s ease-out;
+
+    &__buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &__icon {
       margin-top: 5px;
       display: inline-block;
       width: 30px;
       height: 30px;
-      background-image: url('../../img/play.svg');
       background-size: 30px;
       background-repeat: no-repeat;
       background-position: center;
       cursor: pointer;
+      transition: transform .3s ease-out, visibility .2s linear;
+
+      
     }
+    &__play {
+      background-image: url('../../img/play.svg');
+      &:hover {
+        transform: scale(1.3);
+      }
+  }
+
+    &__rotate {
+      background-image: url('../../img/rotate.svg');
+    }
+
 
     &__inner {
         position: relative;
@@ -32,9 +55,13 @@
         text-align: center;
         transition: transform 0.8s;
         transform-style: preserve-3d;
+
+        &--rotate:hover {
+              transform: rotateY(180deg);
+        } 
       }
 
-      &__front, &__back {
+    &__front, &__back {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -56,12 +83,10 @@
       
       &__front {
         border: 1px solid #fff;
-
-        
       }
 
       &__back {
-        background-color: dodgerblue;
+        border: 1px solid #fff;
         transform: rotateY(180deg)
       }
 

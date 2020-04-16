@@ -22,3 +22,10 @@ body {
     font-family: 'Roboto', sans-serif;
     height: 100wh;
 }
+
+.overlay {
+    overflow-y: hidden;
+    z-index: 4;
+    filter: blur(3px);
+    pointer-events: none;
+}

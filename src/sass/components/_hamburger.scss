@@ -3,6 +3,11 @@
     cursor: pointer;
     z-index: 2;
 
+    &:hover {
+        transform: rotate(180deg);
+        transition: transform 1s linear;
+    }
+
     &-line {
             content: '';
             height: 3px;

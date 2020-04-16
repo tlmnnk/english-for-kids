@@ -5,7 +5,11 @@
 	text-align: center;
 	cursor: pointer;
 	transition: .3s ease all;
-  border: 1px solid white;
+	border: 1px solid white;
+
+	&:hover {
+		@extend %background-shadow;
+	}
   
 	  &-case {
       display: inline-block;
