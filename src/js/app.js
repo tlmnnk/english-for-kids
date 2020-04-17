@@ -1,5 +1,6 @@
-import cards from './cards';
+import { cards } from './cards';
 import CardList from './cardList';
+import { mainPageCards } from './mainPageCards';
 import { MODES } from './constants';
 
 export default class App {
@@ -9,20 +10,43 @@ export default class App {
     this.state = MODES.train;
     this.nav = document.querySelector('.nav');
     this.serializedCards = this.getCardsSerialize();
+    this.activeCardSet = 'Main Page';
   }
 
   init() {
     this.nav.addEventListener('click', (e) => {
       this.cardListRenderOnMenuItemClick(e);
     });
+    this.mainPageRender();
+  }
+
+  mainPageRender() {
+    new CardList(mainPageCards).cardListRender();
+    this.styleMainPageCards();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  styleMainPageCards() {
+    document.querySelectorAll('.card__buttons').forEach((item) => {
+      item.classList.add('hidden');
+      item.parentNode.classList.add('pointer');
+    });
   }
 
   cardListRenderOnMenuItemClick(e) {
     if (e.target.classList.contains('nav__item')) {
       const setListTitle = e.target.getAttribute('data');
-      console.log(setListTitle);
-      this.clearCardContainer();
-      new CardList(this.serializedCards[setListTitle]).cardListRender();
+      if (setListTitle === 'Main Page') {
+        this.mainPageRender();
+        return;
+      }
+      if (this.activeCardSet !== setListTitle) {
+        this.activeCardSet = setListTitle;
+        console.log(setListTitle);
+        this.clearCardContainer();
+        new CardList(this.serializedCards[setListTitle]).cardListRender();
+        console.log(this.serializedCards);
+      }
     }
   }
 

@@ -85,15 +85,19 @@
         transition: box-shadow .3s ease-out;
 
         &:hover {
-          -webkit-box-shadow: inset 1px 0px 10px -1px rgba(255,255,255,1);
-      -moz-box-shadow: inset 1px 0px 10px -1px rgba(255,255,255,1);
-      box-shadow: inset 1px 0px 10px -1px rgba(255,255,255,1);
+          -webkit-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+      -moz-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+      box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
         }
       }
 
       &__back {
         border: 1px solid #fff;
-        transform: rotateY(180deg);   
+        transform: rotateY(180deg); 
+        -webkit-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+        -moz-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+        box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+          
       }
 
      /*  &:hover {
@@ -101,4 +105,7 @@
             transform: rotateY(180deg);
           }
       }  */
+}
+.pointer {
+  cursor: pointer;
 }

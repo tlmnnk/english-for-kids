@@ -1,4 +1,4 @@
-const cards = [
+export const cards = [
   ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Computers', 'Food'],
   [
     {
@@ -402,5 +402,4 @@ const cards = [
   ],
 ];
 
-export default cards;
 export const wordSets = cards[0];
