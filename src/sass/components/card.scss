@@ -15,8 +15,7 @@
     
     perspective: 1000px;
 
-    transition: box-shadow .4s ease-out;
-    transition: transform .3s ease-out;
+    transition: box-shadow .4s ease-out, transform .3s ease-out;
 
     &__buttons {
       display: flex;
@@ -34,7 +33,6 @@
       cursor: pointer;
       transition: transform .3s ease-out, visibility .2s linear;
 
-      
     }
     &__play {
       background-image: url('../../img/play.svg');
@@ -45,8 +43,8 @@
 
     &__rotate {
       background-image: url('../../img/rotate.svg');
+      transition: transform .3s linear;
     }
-
 
     &__inner {
         position: relative;
@@ -83,11 +81,19 @@
       
       &__front {
         border: 1px solid #fff;
+
+        transition: box-shadow .3s ease-out;
+
+        &:hover {
+          -webkit-box-shadow: inset 1px 0px 10px -1px rgba(255,255,255,1);
+      -moz-box-shadow: inset 1px 0px 10px -1px rgba(255,255,255,1);
+      box-shadow: inset 1px 0px 10px -1px rgba(255,255,255,1);
+        }
       }
 
       &__back {
         border: 1px solid #fff;
-        transform: rotateY(180deg)
+        transform: rotateY(180deg);   
       }
 
      /*  &:hover {
