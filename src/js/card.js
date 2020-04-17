@@ -4,7 +4,7 @@ export default class Card {
   }
 
   renderCard() {
-    return `<div class="card"">
+    return `<div class="card" data="${this.card.word}">
         <div class="card__inner">
             <div class="card__front">
                 <img src="${this.card.image}" alt="${this.card.word}">

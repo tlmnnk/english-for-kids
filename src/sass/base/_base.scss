@@ -33,3 +33,9 @@ body {
 .hidden {
     display: none;
 }
+.visible {
+    opacity: 1;
+}
+.visiblly-hidden {
+    opacity: 0;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable class-methods-use-this */
 import Card from './card';
 
@@ -14,6 +15,7 @@ export default class CardList {
     });
     this.cardsContainer.insertAdjacentHTML('afterbegin', fragment);
     this.initEventListeners();
+    this.cardsContainer.classList.add('visible');
   }
 
   initEventListeners() {
@@ -29,7 +31,6 @@ export default class CardList {
     if (e.target.classList.contains('card__play')) {
       const url = e.target.getAttribute('data-audio');
       new Audio(url).play();
-      console.log('Audio play!....');
     }
   }
 
@@ -42,16 +43,11 @@ export default class CardList {
   flipCardFront() {
     this.cardsContainer.addEventListener('mouseover', (e) => {
       if (e.target === this.cardsContainer) {
-        console.log('yes!!!......');
-        console.log(e.relatedTarget);
         document.querySelectorAll('.card__inner').forEach((item) => {
           item.classList.remove('card__inner--rotate');
           // eslint-disable-next-line no-unused-expressions
         });
       }
-      /*  if (e.relatedTarget.classList.contains('cards')) {
-          console.log('card mouseout !.........');
-        } */
     });
   }
 }

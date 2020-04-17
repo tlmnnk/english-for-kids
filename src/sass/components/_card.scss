@@ -4,11 +4,11 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  transition: all .3s ease-out;
+  opacity: 0;
+  transition: opacity .5s ease-out;
 }
 
 .card {
-    //background-color: transparent;
     margin-top: 30px;
     width: 300px;
     height: 210px;
@@ -18,12 +18,13 @@
     transition: box-shadow .4s ease-out, transform .3s ease-out;
 
     &__buttons {
+      width: 100%;
       display: flex;
       justify-content: space-around;
     }
 
     &__icon {
-      margin-top: 5px;
+      
       display: inline-block;
       width: 30px;
       height: 30px;
@@ -67,16 +68,17 @@
         text-transform: uppercase;
         letter-spacing: 5px;
         user-select: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
         -webkit-backface-visibility: hidden; /* Safari */
         backface-visibility: hidden;
 
         & img {
-          margin-top: 10px;
           width: 200px;
           height: auto;
         }
-        
-    
       }
       
       &__front {
@@ -96,15 +98,8 @@
         transform: rotateY(180deg); 
         -webkit-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
         -moz-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
-        box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
-          
+        box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1); 
       }
-
-     /*  &:hover {
-          .card__inner {
-            transform: rotateY(180deg);
-          }
-      }  */
 }
 .pointer {
   cursor: pointer;
