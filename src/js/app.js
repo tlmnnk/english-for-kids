@@ -21,11 +21,13 @@ export default class App {
   }
 
   mainPageRender() {
-    //this.renderCardList(mainPageCards);
+  // this.renderCardList(mainPageCards);
+    this.clearCardContainer();
     new CardList(mainPageCards).cardListRender();
     this.styleMainPageCards();
     this.addMainPageOnclick();
     this.activeCardSet = 'Main Page';
+    document.querySelector(`a[data="${this.activeCardSet}"]`).classList.add('nav__item--active');
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -42,10 +44,14 @@ export default class App {
         if (e.target.parentNode.parentNode.classList.contains('card__inner')) {
           const setList = e.target.parentNode.parentNode.parentNode.getAttribute('data');
           this.renderCardList(this.serializedCards[setList]);
+          document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
+          document.querySelector(`a[data="${setList}"]`).classList.add('nav__item--active');
           this.activeCardSet = setList;
         } else {
           const setList = e.target.parentNode.parentNode.getAttribute('data');
           this.renderCardList(this.serializedCards[setList]);
+          document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
+          document.querySelector(`a[data="${setList}"]`).classList.add('nav__item--active');
           this.activeCardSet = setList;
         }
       }
@@ -57,11 +63,15 @@ export default class App {
       const setListTitle = e.target.getAttribute('data');
       if (this.activeCardSet !== setListTitle) {
         if (setListTitle === 'Main Page') {
+          document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
           this.mainPageRender();
           return;
         }
+        document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
         this.activeCardSet = setListTitle;
+        
         this.renderCardList(this.serializedCards[setListTitle]);
+        e.target.classList.add('nav__item--active');
         //this.clearCardContainer();
         //new CardList(this.serializedCards[setListTitle]).cardListRender();
       }
@@ -77,9 +87,10 @@ export default class App {
     setTimeout(() => {
       this.cardContainer.classList.remove('visiblly-hidden');
     }, 501);
-    
+    document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
     //this.cardContainer.classList.remove('visiblly-hidden');
     //this.activeCardSet = Object.keys(cardSet)[0];
+
   }
 
   clearCardContainer() {

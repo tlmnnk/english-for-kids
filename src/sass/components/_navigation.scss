@@ -35,9 +35,12 @@
 
 
         &:hover {
-            outline: 1px solid #fff;
+            
             background-color: #fff;
             color: #000;
+        }
+        &--active {
+            outline: 1px solid #fff;
         }
     }
 

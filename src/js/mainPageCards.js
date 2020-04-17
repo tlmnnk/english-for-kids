@@ -38,7 +38,7 @@ export const mainPageCards = [
   {
     word: 'Computers',
     translation: null,
-    image: 'img/speakers.jpg',
+    image: 'img/computer.jpg',
     audioSrc: null,
   },
   {
