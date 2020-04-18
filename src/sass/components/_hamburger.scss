@@ -4,8 +4,8 @@
     z-index: 2;
 
     &:hover {
-        transform: rotate(180deg);
-        transition: transform 1s linear;
+        transform: rotate(360deg);
+        transition: transform .5s linear;
     }
 
     &-line {

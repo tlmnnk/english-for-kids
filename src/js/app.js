@@ -2,22 +2,50 @@ import { cards } from './cards';
 import CardList from './cardList';
 import { mainPageCards } from './mainPageCards';
 import { MODES } from './constants';
+import switcher from './switch';
 
 export default class App {
   constructor() {
     this.cards = cards;
     this.cardContainer = document.querySelector('.cards');
-    this.state = MODES.train;
+    this.mode = MODES.train;
     this.nav = document.querySelector('.nav');
     this.serializedCards = this.getCardsSerialize();
     this.activeCardSet = null;
   }
 
   init() {
+    this.initEventListeners();
+    this.mainPageRender();
+  }
+
+  initEventListeners() {
     this.nav.addEventListener('click', (e) => {
       this.cardListRenderOnMenuItemClick(e);
     });
-    this.mainPageRender();
+    document.querySelector('.switch-button').addEventListener('click', this.switchClickHandler);
+  }
+
+  switchClickHandler(e) {
+    if (e.target.classList.contains('left')) {
+      if (!switcher.switchBtnLeft.classList.contains('active-case')) {
+        switcher.switchBtnRight.classList.remove('active-case');
+        switcher.switchBtnLeft.classList.add('active-case');
+        switcher.activeSwitch.style.left = '0%';
+        this.mode = MODES.train;
+        console.log(this.mode);
+        return;
+      }
+    }
+    if (e.target.classList.contains('right')) {
+      if (!switcher.switchBtnRight.classList.contains('active-case')) {
+        switcher.switchBtnRight.classList.add('active-case');
+        switcher.switchBtnLeft.classList.remove('active-case');
+        switcher.activeSwitch.style.left = '50%';
+        this.mode = MODES.play;
+        console.log(this.mode);
+      }
+    }
   }
 
   mainPageRender() {
@@ -69,11 +97,11 @@ export default class App {
         }
         document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
         this.activeCardSet = setListTitle;
-        
+
         this.renderCardList(this.serializedCards[setListTitle]);
         e.target.classList.add('nav__item--active');
-        //this.clearCardContainer();
-        //new CardList(this.serializedCards[setListTitle]).cardListRender();
+        // this.clearCardContainer();
+        // new CardList(this.serializedCards[setListTitle]).cardListRender();
       }
     }
   }
@@ -87,10 +115,8 @@ export default class App {
     setTimeout(() => {
       this.cardContainer.classList.remove('visiblly-hidden');
     }, 501);
-    document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
-    //this.cardContainer.classList.remove('visiblly-hidden');
-    //this.activeCardSet = Object.keys(cardSet)[0];
-
+    // this.cardContainer.classList.remove('visiblly-hidden');
+    // this.activeCardSet = Object.keys(cardSet)[0];
   }
 
   clearCardContainer() {

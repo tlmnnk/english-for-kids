@@ -54,6 +54,7 @@
         text-align: center;
         transition: transform 0.8s;
         transform-style: preserve-3d;
+        border: 1px solid #fff;
 
         &--rotate:hover {
               transform: rotateY(180deg);
@@ -82,7 +83,7 @@
       }
       
       &__front {
-        border: 1px solid #fff;
+        
 
         transition: box-shadow .3s ease-out;
 
@@ -94,7 +95,7 @@
       }
 
       &__back {
-        border: 1px solid #fff;
+        //border: 1px solid #fff;
         transform: rotateY(180deg); 
         -webkit-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
         -moz-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
