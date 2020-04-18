@@ -6,6 +6,10 @@
     color: #fff;
 }
 
+html {
+    font-size: 10px;
+}
+
 a {
     text-decoration: none;
     &:active, &:hover {
@@ -24,7 +28,7 @@ body {
 }
 
 .overlay {
-    overflow-y: hidden;
+    
     z-index: 4;
     filter: blur(3px);
     pointer-events: none;
@@ -38,4 +42,7 @@ body {
 }
 .visiblly-hidden {
     opacity: 0;
+}
+.noScroll {
+    overflow-y: hidden;
 }

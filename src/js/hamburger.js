@@ -1,7 +1,8 @@
 const toogleHandler = (hamburger) => {
   hamburger.classList.toggle('hamburger-line--active');
   document.querySelector('.nav').classList.toggle('nav--active');
-    document.querySelector('.cards').classList.toggle('overlay');
+  document.querySelector('.cards').classList.toggle('overlay');
+  document.querySelector('body').classList.toggle('noScroll');
 };
 
 // eslint-disable-next-line import/prefer-default-export
