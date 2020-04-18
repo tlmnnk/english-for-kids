@@ -8,7 +8,8 @@ export default class App {
   constructor() {
     this.cards = cards;
     this.cardContainer = document.querySelector('.cards');
-    this.mode = MODES.train;
+    this.mode = null;
+    this.mode2 = null;
     this.nav = document.querySelector('.nav');
     this.serializedCards = this.getCardsSerialize();
     this.activeCardSet = null;
@@ -17,13 +18,18 @@ export default class App {
   init() {
     this.initEventListeners();
     this.mainPageRender();
+    setInterval(() => {
+     // console.log(this.mode);
+    }, 1500);
   }
 
   initEventListeners() {
     this.nav.addEventListener('click', (e) => {
       this.cardListRenderOnMenuItemClick(e);
     });
-    document.querySelector('.switch-button').addEventListener('click', this.switchClickHandler);
+    document.querySelector('.switch-button').addEventListener('click', (e) => {
+      this.switchClickHandler(e);
+    });
   }
 
   switchClickHandler(e) {
@@ -34,6 +40,7 @@ export default class App {
         switcher.activeSwitch.style.left = '0%';
         this.mode = MODES.train;
         console.log(this.mode);
+        this.toggleCardModeStyles();
         return;
       }
     }
@@ -44,6 +51,7 @@ export default class App {
         switcher.activeSwitch.style.left = '50%';
         this.mode = MODES.play;
         console.log(this.mode);
+        this.toggleCardModeStyles();
       }
     }
   }
@@ -111,6 +119,9 @@ export default class App {
     setTimeout(() => {
       this.clearCardContainer();
       new CardList(cardSet).cardListRender();
+      //check if this.mode play or train and add propriate styles
+      console.log(this.mode);
+      this.mode === MODES.play ? this.toggleCardModeStyles() : null; 
     }, 500);
     setTimeout(() => {
       this.cardContainer.classList.remove('visiblly-hidden');
@@ -133,5 +144,16 @@ export default class App {
       return acc;
     }, []);
     return serializedCards;
+  }
+
+  toggleCardModeStyles() {
+    if (this.activeCardSet !== 'Main Page') {
+      document.querySelectorAll('.card__header').forEach((item) => {
+        item.classList.toggle('hidden');
+      });
+      document.querySelectorAll('.card__buttons').forEach((item) => {
+        item.classList.toggle('hidden');
+      });
+    }
   }
 }
