@@ -7,7 +7,7 @@ export default class Card {
     return `<div class="card" data="${this.card.word}">
         <div class="card__inner">
             <div class="card__front">
-                <img src="${this.card.image}" alt="${this.card.word}">
+                <img class="card__img" src="${this.card.image}" alt="${this.card.word}">
                 <div class="card__header">${this.card.word}</div>
                 <div class="card__buttons">
                   <span class="card__icon card__play" data-audio="${this.card.audioSrc}"></span>
