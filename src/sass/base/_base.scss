@@ -43,6 +43,10 @@ body {
 .visiblly-hidden {
     opacity: 0;
 }
+.visible2 {
+    visibility: visible;
+    pointer-events: all;
+}
 .noScroll {
     overflow-y: hidden;
 }

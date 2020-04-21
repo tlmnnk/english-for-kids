@@ -2,10 +2,10 @@
     width: 50px;
     cursor: pointer;
     z-index: 2;
+    transition: transform .3s ease-out;
 
     &:hover {
-        transform: rotate(360deg);
-        transition: transform .5s linear;
+        transform: scale(1.2);  
     }
 
     &-line {

@@ -1,4 +1,27 @@
 .game {
+  position: relative;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+
+  @include media-tablet {
+    flex-direction: column-reverse;
+  }
+
+  &--stars {
+    height: 15px;
+    @include media-tablet {
+      height: 30px;
+      margin-top: 10px;
+    }
+  }
+
+  &__star {
+    height: 30px;
+    width: 30px;
+  }
 }

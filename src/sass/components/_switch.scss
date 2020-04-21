@@ -7,6 +7,7 @@
 	transition: .3s ease all;
 	border: 1px solid white;
 	display: flex;
+	user-select: none;
 	@include media-mobile {
 		margin-top: 20px;
 		width: 200px;

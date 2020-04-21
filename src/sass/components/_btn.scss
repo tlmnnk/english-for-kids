@@ -5,20 +5,32 @@
     margin-left: auto;
     width: 400px;
     display: block;
+    flex-shrink: 0;
+
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 2rem;
     line-height: 4rem;
     color: white;
+
     border: 1px solid #fff;
     text-align: center;
     cursor: pointer;
     transition: all .3s ease-out;
+
+    @include media-tablet {
+      width: 100%;
+      align-self: flex-end;
+    }
     
     &:hover {
       color: #000;
       background-color: #fff;
     }
   }
+}
+
+.nopointer {
+  pointer-events: none;
 }

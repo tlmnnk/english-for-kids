@@ -16,7 +16,7 @@ export default class Card {
                 
             </div>
             <div class="card__back">
-                <img src="${this.card.image}" alt="${this.card.translation}">
+                <img class="card__img" src="${this.card.image}" alt="${this.card.translation}">
                 <div class="card__header">${this.card.translation}</div>
             </div>
         </div>

@@ -1,11 +1,18 @@
 .cards {
-  margin-top: 60px;
+  margin-top: 10px;
   margin-bottom: 60px;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   opacity: 0;
   transition: opacity .5s ease-out;
+
+  &--endgame {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
 }
 
 .card {
@@ -17,12 +24,65 @@
     
     perspective: 1000px;
 
-    transition: box-shadow .4s ease-out, transform .3s ease-out;
+    transition: box-shadow .4s ease-out, transform .3s ease-out,
+      wrongClick .1s ease-out, correctClick .1s ease-out, opacity .4s linear;
+
+    &__title {
+      font-size: 3rem;
+      padding: 10px;
+      width: 100%;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      text-align: center;
+    }
+
+    &--wrong {
+      @extend %background-fail;
+      @keyframes wrongClick {
+        0% {box-shadow: none;}
+        50% {@extend %background-fail;}
+        100% {box-shadow: none;}
+      }
+    }
+
+    &--fail {
+      @extend %background-fail;
+    }
+
+    &--win {
+      @extend %background-win;
+    }
+
+    &--correct {
+      @extend %background-win;
+      opacity: 0.4;
+      pointer-events: none;
+      @keyframes correctClick {
+        0% {box-shadow: none;}
+        50% {@extend %background-win;}
+        100% {box-shadow: none;}
+      }
+    }
+
+    &--endgame {
+      border: 1px solid #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     &__buttons {
       width: 100%;
       display: flex;
       justify-content: space-around;
+    }
+
+    &--noclick {
+      pointer-events: none;
+      opacity: 0.4;
+      cursor: none;
     }
 
     &__icon {  
@@ -83,21 +143,23 @@
         -webkit-backface-visibility: hidden; /* Safari */
         backface-visibility: hidden;
 
-        & img {
-          width: 200px;
-          height: auto;
+      }
+      &__img {
+        width: 200px;
+        height: auto;
+        transition: width .1s linear;
+        &--scale {
+          width: 280px;
         }
       }
       
       &__front {
-        
-
         transition: box-shadow .3s ease-out;
 
         &:hover {
           -webkit-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
-      -moz-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
-      box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+          -moz-box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
+          box-shadow: inset 1px 0px 15px -1px rgba(255,255,255,1);
         }
       }
 
