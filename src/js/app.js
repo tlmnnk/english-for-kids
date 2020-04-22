@@ -5,6 +5,7 @@ import CardList from './cardList';
 import { mainPageCards } from './mainPageCards';
 import { MODES } from './constants';
 import switcher from './switch';
+import Stat from './stat';
 
 export default class App {
   constructor() {
@@ -13,6 +14,7 @@ export default class App {
     this.mode = null;
     this.nav = document.querySelector('.nav');
     this.serializedCards = this.getCardsSerialize();
+    this.stat = new Stat(this.serializedCards);
     this.activeCardSet = null;
     this.isGameStarted = false;
     this.AudioShuffled = [];
@@ -33,7 +35,7 @@ export default class App {
       this.switchClickHandler(e);
       this.startGameBtnHandler(e);
       this.cardClickGameStarted(e);
-      console.log(this.isGameStarted);
+      if (!this.isGameStarted) this.stat.updateStat(e, this.isGameStarted);
     });
   }
 
@@ -46,7 +48,6 @@ export default class App {
         this.mode = MODES.train;
         // this.isGameStarted ? this.toogleCardPoinerStyle() : null;
         this.isGameStarted ? this.isGameStarted = false : null;
-        console.log(this.mode);
         this.toggleCardModeStyles();
         this.resetGameParament();
         return;
@@ -59,7 +60,6 @@ export default class App {
         switcher.activeSwitch.style.left = '50%';
 
         this.mode = MODES.play;
-        console.log(this.mode);
         this.toggleCardModeStyles();
         this.resetGameParament();
       }
@@ -72,7 +72,9 @@ export default class App {
     if (document.querySelector('.game').classList.contains('visible2')) {
       document.querySelector('.game').classList.remove('visible2');
     }
-
+    document.querySelector('.switch-button').classList.contains('overlay')
+      ? document.querySelector('.switch-button').classList.remove('overlay')
+      : null;
     new CardList(mainPageCards).cardListRender();
     this.styleMainPageCards();
     this.addMainPageOnclick();
@@ -114,12 +116,21 @@ export default class App {
 
   cardListRenderOnMenuItemClick(e) {
     if (e.target.classList.contains('nav__item')) {
-      console.log(document.querySelector(`a[data="${this.activeCardSet}"]`));
       const setListTitle = e.target.getAttribute('data');
       if (this.activeCardSet !== setListTitle) {
         if (setListTitle === 'Main Page') {
           document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
           this.mainPageRender();
+          return;
+        }
+        if (setListTitle === 'Statistics') {
+          document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
+          this.clearCardContainer();
+          this.stat.statRender();
+          document.querySelector('.game').classList.contains('visible2') ? document.querySelector('.game').classList.remove('visible2') : null;
+          document.querySelector('.switch-button').classList.toggle('overlay');
+          e.target.classList.add('nav__item--active');
+          this.activeCardSet = setListTitle;
           return;
         }
         document.querySelector(`a[data="${this.activeCardSet}"]`).classList.remove('nav__item--active');
@@ -135,11 +146,13 @@ export default class App {
 
   renderCardList(cardSet) {
     this.cardContainer.classList.add('visiblly-hidden');
+    document.querySelector('.switch-button').classList.contains('overlay') 
+      ? document.querySelector('.switch-button').classList.remove('overlay')
+      : null;
 
     setTimeout(() => {
       this.clearCardContainer();
       new CardList(cardSet).cardListRender();
-      console.log(this.mode);
       this.mode === MODES.play ? this.toggleCardModeStyles() : null;
     }, 500);
 
@@ -164,6 +177,7 @@ export default class App {
       Object.assign(acc, tempObj);
       return acc;
     }, []);
+    delete serializedCards.Statistics;
     return serializedCards;
   }
 
@@ -243,6 +257,7 @@ export default class App {
           ? wrongClickedCard = e.path[3] : wrongClickedCard = e.path[2];
         const correctClickedCard = document.querySelector(`span[data-audio="${this.AudioShuffled[this.AudioIndicator]}"]`).parentElement.parentElement.parentElement.parentElement;
         if (clickedCardAudio === this.AudioShuffled[this.AudioIndicator]) {
+          this.stat.updateStat(e, this.isGameStarted, true, `${this.AudioShuffled[this.AudioIndicator]}`);
           new Audio('audio/correct.mp3').play();
           this.addStar(0);
           correctClickedCard.classList.add('card--correct');
@@ -262,6 +277,7 @@ export default class App {
             }, 900);
           }
         } else {
+          this.stat.updateStat(e, this.isGameStarted, false, `${this.AudioShuffled[this.AudioIndicator]}`);
           new Audio('audio/fail.mp3').play();
           this.addStar(1);
           wrongClickedCard.classList.add('card--wrong');
@@ -293,7 +309,6 @@ export default class App {
       this.cardContainer.classList.add('cards--endgame');
       this.renderResultPage();
       hideElements();
-      console.log(`Errors   =   ${this.errors}`);
       this.errors === 0 ? new Audio('audio/win.mp3').play() : new Audio('audio/lose.mp3').play();
     }, 501);
 

@@ -2,13 +2,13 @@ export const mainPageCards = [
   {
     word: 'Action (set A)',
     translation: null,
-    image: 'img/dance.jpg',
+    image: 'img/jump.jpg',
     audioSrc: null,
   },
   {
     word: 'Action (set B)',
     translation: null,
-    image: 'img/play.jpg',
+    image: 'img/skip.jpg',
     audioSrc: null,
   },
   {
@@ -26,7 +26,7 @@ export const mainPageCards = [
   {
     word: 'Clothes',
     translation: null,
-    image: 'img/boot.jpg',
+    image: 'img/coat.jpg',
     audioSrc: null,
   },
   {
