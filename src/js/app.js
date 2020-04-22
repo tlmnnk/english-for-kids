@@ -314,7 +314,7 @@ export default class App {
     this.audioArray ? this.audioArray = [] : null;
     this.AudioShuffled.length ? this.AudioShuffled : null;
     this.AudioIndicator ? this.AudioIndicator = 0 : null;
-    this.errors === 0 ? this.errors = 0 : null;
+    this.errors !== 0 ? this.errors = 0 : null;
   }
 
   renderResultPage() {
