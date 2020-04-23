@@ -10,12 +10,13 @@ import Stat from './stat';
 export default class App {
   constructor() {
     this.cards = cards;
+    //this.active
     this.cardContainer = document.querySelector('.cards');
     this.mode = null;
     this.nav = document.querySelector('.nav');
     this.serializedCards = this.getCardsSerialize();
     this.stat = new Stat(this.serializedCards);
-    this.activeCardSet = null;
+    this.currentSet = null;
     this.isGameStarted = false;
     this.AudioShuffled = [];
     this.AudioIndicator = 0;
@@ -35,6 +36,7 @@ export default class App {
       this.switchClickHandler(e);
       this.startGameBtnHandler(e);
       this.cardClickGameStarted(e);
+      this.currentSet.audioInit(e);
       if (!this.isGameStarted) this.stat.updateStat(e, this.isGameStarted);
     });
   }
@@ -75,7 +77,8 @@ export default class App {
     document.querySelector('.switch-button').classList.contains('overlay')
       ? document.querySelector('.switch-button').classList.remove('overlay')
       : null;
-    new CardList(mainPageCards).cardListRender();
+    this.currentSet = new CardList(mainPageCards);
+    this.currentSet.cardListRender();
     this.styleMainPageCards();
     this.addMainPageOnclick();
     this.activeCardSet = 'Main Page';
@@ -152,7 +155,8 @@ export default class App {
 
     setTimeout(() => {
       this.clearCardContainer();
-      new CardList(cardSet).cardListRender();
+      this.currentSet = new CardList(cardSet);
+      this.currentSet.cardListRender();
       this.mode === MODES.play ? this.toggleCardModeStyles() : null;
     }, 500);
 

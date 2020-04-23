@@ -20,7 +20,6 @@ export default class CardList {
 
   initEventListeners() {
     this.cardsContainer.addEventListener('click', (e) => {
-      this.audioInit(e);
       this.rotateCardHandler(e);
     });
     this.flipCardFront();
@@ -30,6 +29,7 @@ export default class CardList {
   audioInit(e) {
     if (e.target.classList.contains('card__play')) {
       const url = e.target.getAttribute('data-audio');
+      console.log('audio play!....');
       new Audio(url).play();
     }
   }
