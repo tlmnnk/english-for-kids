@@ -1,0 +1,16 @@
+%background-shadow {
+    -webkit-box-shadow: 2px 3px 54px -14px rgba(255,255,255,1);
+      -moz-box-shadow: 2px 3px 54px -14px rgba(255,255,255,1);
+      box-shadow: 2px 3px 54px -14px rgba(255,255,255,1);
+}
+%background-fail {
+      -webkit-box-shadow: 0px 0px 15px 5px rgba(255,23,23,1);
+      -moz-box-shadow: 0px 0px 15px 5px rgba(255,23,23,1);
+      box-shadow: 0px 0px 15px 5px rgba(255,23,23,1);
+}
+
+%background-win {
+      -webkit-box-shadow: 0px 0px 15px 5px rgba(102,255,25,1);
+      -moz-box-shadow: 0px 0px 15px 5px rgba(102,255,25,1);
+      box-shadow: 0px 0px 15px 5px rgba(102,255,25,1);
+}
